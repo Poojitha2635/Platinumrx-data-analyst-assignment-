@@ -1,0 +1,46 @@
+SPREADSHEET PROFICIENCY
+
+Q1.Populate ticket_created_at column in feedbacks table using created_at from ticket table
+
+Solution:
+
+Using  VLOOKUP to fetch the created_at value from the ticket sheet
+
+Formula:
+=VLOOKUP(A2, ticket!A:E, 2, FALSE)
+
+Explanation:
+
+A2 → cms_id in feedback table
+ticket!A:E → ticket worksheet range
+2 → column containing created_at
+FALSE → exact match
+
+This formula fills the ticket_created_at column
+-----------------------------------------------------------------------------------------------
+Q2.Fetch outlet-wise count of tickets created and closed
+
+a) Closed on same day
+
+Creating  a new column in ticket sheet
+
+Formula:
+=IF(DATE(created_at)=DATE(closed_at),"Same Day","No")
+
+Then using  Pivot Table
+
+Steps:
+Select ticket data
+Click Insert → Pivot Table
+Add outlet_id → Rows
+Add ticket_id → Values (Count)
+Filter Same Day
+-----------------------------
+b)Closed in same hour
+
+Creating  another column
+
+Formula:
+=IF(HOUR(created_at)=HOUR(closed_at),"Same Hour","No")
+
+Then using  Pivot Table again to count tickets per outlet.

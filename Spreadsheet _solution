@@ -4,17 +4,17 @@ Q1.Populate ticket_created_at column in feedbacks table using created_at from ti
 
 Solution:
 
-Using  VLOOKUP to fetch the created_at value from the ticket sheet
+Using  INDEX& Match  to fetch the created_at value from the ticket sheet
 
 Formula:
-=VLOOKUP(A2, ticket!A:E, 2, FALSE)
+=INDEX(Sheet1!B:B,MATCH(A3,Sheet1!E:E,0))
 
 Explanation:
+A3 → cms_id in your feedback sheet
+Sheet1!E:E → cms_id column in ticket sheet
+MATCH(A3,Sheet1!E:E,0) → finds the row number of that cms_id
+INDEX(Sheet1!B:B, … ) → returns the created_at value from column B
 
-A2 → cms_id in feedback table
-ticket!A:E → ticket worksheet range
-2 → column containing created_at
-FALSE → exact match
 
 This formula fills the ticket_created_at column
 -----------------------------------------------------------------------------------------------
